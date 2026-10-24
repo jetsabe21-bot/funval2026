@@ -54,6 +54,9 @@ const addTask = async (title: string) => {
     
     
         let objetoTarea: Task = {
+
+const addTask = (title: string) => {
+    let objetoTarea: Task = {
         id: idCounter,
         title: title,
         completed: false 
@@ -72,6 +75,9 @@ const addTask = async (title: string) => {
          
         console.log(`\n Error al agregar tarea: ${error.message}`);
     }
+    listaTareas.push(objetoTarea);
+    console.log(`¡Tarea "${objetoTarea.title}" agregada con éxito! (ID asignado: ${objetoTarea.id})`);
+    idCounter++;
 };
 
 
@@ -194,3 +200,5 @@ iniciarMenu();
  //se utilizo la ayuda de la IA para entender todo el proceso
  // aun me es dificil entender todo o procesar toda la informacion
  //sigo estudiando para poder recordarlo todo.
+ //sigo estudiando para poder recordarlo todo.
+
