@@ -36,6 +36,24 @@ console.log("---------------------------------------------------");
 let listaTareas: Task[] = [];
 let idCounter: number = 1;
 
+function saveToDB(tarea: Task): Promise<string> {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(`Confirmación: La tarea "${tarea.title}" fue guardada en el servidor de forma segura.`);
+        }, 2000); 
+    });
+}
+
+
+
+const addTask = async (title: string) => {
+     try {
+    if if (title.trim() === '') {
+            throw new Error("El título de la tarea no puede estar vacío.");
+        }
+    
+    
+        let objetoTarea: Task = {
 
 const addTask = (title: string) => {
     let objetoTarea: Task = {
@@ -43,6 +61,20 @@ const addTask = (title: string) => {
         title: title,
         completed: false 
     };
+
+
+    listaTareas.push(objetoTarea);
+    console.log(`¡Tarea "${objetoTarea.title}" creada localmente! (ID asignado: ${objetoTarea.id})`);
+    idCounter++;
+
+    console.log("Guardando datos en el servidor remoto por favor espera 2 segundos.");
+    const mensajeServidor = await saveToDB(objetoTarea);
+    console.log(mensajeServidor); 
+
+    } catch (error: any) {
+         
+        console.log(`\n Error al agregar tarea: ${error.message}`);
+    }
     listaTareas.push(objetoTarea);
     console.log(`¡Tarea "${objetoTarea.title}" agregada con éxito! (ID asignado: ${objetoTarea.id})`);
     idCounter++;
@@ -167,5 +199,6 @@ iniciarMenu();
  rl.close();
  //se utilizo la ayuda de la IA para entender todo el proceso
  // aun me es dificil entender todo o procesar toda la informacion
+ //sigo estudiando para poder recordarlo todo.
  //sigo estudiando para poder recordarlo todo.
 
